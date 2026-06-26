@@ -3,7 +3,52 @@
 		"my-mcp-server-9a6462aa": {
 			"url": "https://api.githubcopilot.com/mcp/",
 			"type": "http"
+		},
+		"mysql-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"mysql-mcp-server"
+			],
+			"env": {
+				"MYSQL_HOST": "${input:mysql_host}",
+				"MYSQL_PORT": "${input:mysql_port}",
+				"MYSQL_USER": "${input:mysql_user}",
+				"MYSQL_PASSWORD": "${input:mysql_password}",
+				"MYSQL_DATABASE": "${input:mysql_database}"
+			}
 		}
 	},
-	"inputs": []
+	"inputs": [
+		{
+			"id": "mysql_host",
+			"type": "promptString",
+			"description": "MySQL host",
+			"default": "localhost"
+		},
+		{
+			"id": "mysql_port",
+			"type": "promptString",
+			"description": "MySQL port",
+			"default": "3306"
+		},
+		{
+			"id": "mysql_user",
+			"type": "promptString",
+			"description": "MySQL user"
+		},
+		{
+			"id": "mysql_password",
+			"type": "promptString",
+			"description": "MySQL password",
+			"password": true
+		},
+		{
+			"id": "mysql_database",
+			"type": "promptString",
+			"description": "MySQL database (optional)",
+			"default": ""
+		}
+	]
 }
